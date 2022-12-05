@@ -3,6 +3,7 @@ import { Contact } from "../../entities/contact.entity";
 import { EmailContact } from "../../entities/emailsContact.entity";
 import { PhoneContact } from "../../entities/phonesContact.entity";
 import { User } from "../../entities/users.entity";
+import AppError from "../../errors/AppError";
 import { IContactRequest } from "../../interfaces/contact";
 
 const createContactService = async (
@@ -15,6 +16,12 @@ const createContactService = async (
   const phoneContactRepository = AppDataSource.getRepository(PhoneContact);
 
   const { fullName, emailsContact, phonesContact } = newContactInfo;
+
+  if (emailsContact.length > 3 || phonesContact.length > 3) {
+    throw new AppError(
+      "You can't add more than 3 phone numbers or emails to a Contact."
+    );
+  }
 
   const userOwner = await userRepository.findOneByOrFail({ id: userId });
 

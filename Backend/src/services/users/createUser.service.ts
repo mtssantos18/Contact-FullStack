@@ -13,7 +13,7 @@ const createUserService = async (newUserInfo: IUserRequest) => {
 
   if (newUserInfo.emailsUser.length > 3 || newUserInfo.phonesUser.length > 3) {
     throw new AppError(
-      "You can't add more than 3 phone numbers or emails to a User"
+      "You can't add more than 3 phone numbers or emails to a User."
     );
   }
 

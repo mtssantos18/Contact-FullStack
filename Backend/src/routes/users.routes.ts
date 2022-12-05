@@ -3,6 +3,7 @@ import {
   createUserController,
   deleteUserController,
   listContactsFromUserController,
+  listSpecificUserController,
   listUsersController,
 } from "../controllers/users.controllers";
 import authTokenMiddleware from "../middlewares/authToken.middleware";
@@ -13,6 +14,7 @@ const usersRoutes = Router();
 
 usersRoutes.post("", checkUsernameAvailability, createUserController);
 usersRoutes.get("", authTokenMiddleware, listUsersController);
+usersRoutes.get("/:userId", authTokenMiddleware, listSpecificUserController);
 usersRoutes.get(
   "/contacts",
   authTokenMiddleware,

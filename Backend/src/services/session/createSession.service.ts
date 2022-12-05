@@ -22,12 +22,18 @@ const createSessionService = async ({ username, password }: IUserLogin) => {
   }
 
   const token = jwt.sign(
-    { emails: user.emailsUser, phones: user.phonesUser },
+    {
+      emails: user.emailsUser,
+      phones: user.phonesUser,
+    },
     process.env.SECRET_KEY as string,
     { subject: user.id, expiresIn: "10h" }
   );
 
-  return token;
+  return {
+    token,
+    user: { fullName: user.fullName, username: user.username, userId: user.id },
+  };
 };
 
 export default createSessionService;

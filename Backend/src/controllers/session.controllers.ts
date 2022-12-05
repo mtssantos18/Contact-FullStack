@@ -7,5 +7,5 @@ export const createSessionController = async (req: Request, res: Response) => {
 
   const token = await createSessionService({ username, password });
 
-  return res.status(200).send({ token });
+  return res.status(200).send(token);
 };

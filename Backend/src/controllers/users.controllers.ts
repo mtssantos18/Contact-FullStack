@@ -5,6 +5,7 @@ import { IUserRequest } from "../interfaces/user";
 import createUserService from "../services/users/createUser.service";
 import deleteUserService from "../services/users/deleteUser.service";
 import listContactsFromUserService from "../services/users/listContactsFromUser.service";
+import listSpecificUserService from "../services/users/listSpecificUser.service";
 
 export const createUserController = async (req: Request, res: Response) => {
   const newUserInfo: IUserRequest = req.body;
@@ -18,6 +19,17 @@ export const listUsersController = async (req: Request, res: Response) => {
   const users = await listUsersService();
 
   return res.status(200).json(instanceToPlain(users));
+};
+
+export const listSpecificUserController = async (
+  req: Request,
+  res: Response
+) => {
+  const { userId } = req.params;
+
+  const user = await listSpecificUserService(userId);
+
+  return res.status(200).json(user);
 };
 
 export const listContactsFromUserController = async (

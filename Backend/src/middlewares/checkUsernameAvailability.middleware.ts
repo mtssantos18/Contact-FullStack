@@ -16,7 +16,7 @@ const checkUsernameAvailability = async (
   const checkUser = await userRepository.findOneBy({ username: user.username });
 
   if (checkUser) {
-    throw new AppError("Username already exist", 409);
+    throw new AppError("Username already exist.", 409);
   }
 
   next();
