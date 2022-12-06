@@ -32,9 +32,15 @@ function Login() {
     api
       .post("/login", data)
       .then((res) => {
-        const token = res.data.token;
+        const { token, user } = res.data;
 
         localStorage.setItem("@Contact:token", JSON.stringify(token));
+        localStorage.setItem("@Contact:name", JSON.stringify(user.fullName));
+        localStorage.setItem(
+          "@Contact:username",
+          JSON.stringify(user.username)
+        );
+        localStorage.setItem("@Contact:userId", JSON.stringify(user.userId));
 
         toast.success("Usuário logado com sucesso.");
 

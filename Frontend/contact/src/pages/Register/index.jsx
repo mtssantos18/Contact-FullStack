@@ -36,7 +36,6 @@ function Register() {
   } = useForm({ resolver: yupResolver(formSchema) });
 
   const onSubmit = (data) => {
-    console.log(data);
     const formattedEmails = data.emailsUser.split(",");
     const formattedPhones = data.phonesUser.split(",");
 
@@ -45,8 +44,6 @@ function Register() {
       emailsUser: formattedEmails,
       phonesUser: formattedPhones,
     };
-
-    console.log(newData);
 
     api
       .post("/users", newData)
@@ -58,10 +55,15 @@ function Register() {
         }, 1500);
       })
       .catch((err) => {
-        if (err.response.data.message === "Username already exist") {
+        if (err.response.data.message === "Username already exist.") {
           toast.error(
             "Nome de usuário já cadastrado, escolha outro diferente."
           );
+        } else if (
+          err.response.data.message ===
+          "You can't add more than 3 phone numbers or emails to a User."
+        ) {
+          toast.error("Cadastre no máximo 3 emails/telefones diferentes.");
         } else {
           toast.error("Cadastro não efetuado, revise suas informações.");
         }
