@@ -14,12 +14,12 @@ const usersRoutes = Router();
 
 usersRoutes.post("", checkUsernameAvailability, createUserController);
 usersRoutes.get("", authTokenMiddleware, listUsersController);
-usersRoutes.get("/:userId", authTokenMiddleware, listSpecificUserController);
 usersRoutes.get(
   "/contacts",
   authTokenMiddleware,
   listContactsFromUserController
 );
+usersRoutes.get("/:userId", authTokenMiddleware, listSpecificUserController);
 usersRoutes.delete(
   "/:userId",
   authTokenMiddleware,
