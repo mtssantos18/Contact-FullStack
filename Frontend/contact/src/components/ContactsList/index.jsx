@@ -2,7 +2,7 @@ import React, { useEffect, useState } from "react";
 import api from "../../services/api";
 import ContactCard from "../ContactCard";
 import EmptyCard from "../EmptyCard";
-import { ContactInfo, EmptyDiv, Ul } from "./styles";
+import { ContactInfo, Ul } from "./styles";
 
 function ContactsList() {
   const [myContactsList, setMyContactsList] = useState([]);

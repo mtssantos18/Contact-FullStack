@@ -1,4 +1,3 @@
-import React from "react";
 import { ContactLi } from "./styles";
 
 function ContactCard({ contact }) {
